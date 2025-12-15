@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <title>Variant 15 – Page 1 (Responsive Grid)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background-color: #fff;
+        color: #000;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      :root {
+        --space-1: clamp(6px, 0.6vw, 10px);
+        --space-2: clamp(10px, 1vw, 14px);
+        --space-3: clamp(14px, 1.4vw, 20px);
+        --space-4: clamp(18px, 2vw, 28px);
+        --radius: 10px;
+        --max-page: 1100px;
+        --border: #999;
+        --bld: #000;
+      }
+
+      .page {
+        padding: var(--space-4);
+        display: grid;
+        place-items: start center;
+      }
+
+      .layout-grid {
+        width: min(100%, var(--max-page));
+        display: grid;
+        grid-template-columns: 260px 12px 1fr;
+        gap: 0;
+        background: transparent;
+      }
+
+      .left-col {
+        grid-column: 1;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        border: 1px solid var(--border);
+        border-right: none;
+        min-height: 600px;
+      }
+      .gutter {
+        grid-column: 2;
+        background: #fff;
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        min-height: 600px;
+      }
+      .right-col {
+        grid-column: 3;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        border: 1px solid var(--border);
+        border-left: none;
+        min-height: 600px;
+        background: #fff;
+      }
+
+      .box { padding: var(--space-3); }
+
+      .box1 {
+        background: #ffe5cc;
+        border-bottom: 1px solid var(--border);
+        display: flex; align-items: flex-start; justify-content: center; text-align: left;
+      }
+      .box4 {
+        background: #e6f0d5;
+        display: flex; align-items: flex-start; justify-content: center; text-align: left;
+      }
+
+      .box2 {
+        background: #c7d5ef;
+        border-bottom: 1px solid var(--bld);
+        padding: var(--space-3) var(--space-4);
+        display: flex; flex-direction: row; align-items: flex-start; gap: var(--space-3);
+      }
+      .slogan {
+        font-size: clamp(18px, 2.2vw, 24px);
+        font-weight: 700;
+        color: #000;
+        border: 1px solid var(--bld);
+        background: #fff;
+        padding: 6px 12px;
+        display: inline-block;
+        border-radius: var(--radius);
+      }
+      .box2-right { font-size: clamp(14px, 1.2vw, 16px); }
+
+      .box3 {
+        background: #fff;
+        border-bottom: 1px solid var(--bld);
+        padding: var(--space-4);
+        font-size: clamp(14px, 1.2vw, 16px);
+        overflow: auto;
+      }
+
+      .box5 {
+        background: #c7d5ef;
+        padding: var(--space-4);
+        display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: flex-start;
+      }
+      .label-num { font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; }
+      .cta {
+        font-size: clamp(18px, 2vw, 22px);
+        font-weight: 700;
+        color: #000;
+        border: 1px solid var(--bld);
+        background: #fff;
+        padding: 6px 12px;
+        display: inline-block;
+        margin-bottom: var(--space-2);
+        border-radius: var(--radius);
+      }
+
+      .main-nav { list-style: disc; padding-left: 20px; font-size: clamp(14px, 1.2vw, 16px); }
+      .main-nav li { margin-bottom: 6px; }
+      .main-nav a { text-decoration: none; color: #000; font-weight: 600; }
+      .main-nav a:hover { text-decoration: underline; }
+
+      .text-wrapper p { margin-bottom: var(--space-2); font-size: clamp(14px, 1.2vw, 16px); }
+      .section-title { margin: var(--space-3) 0 var(--space-2); font-size: clamp(16px, 1.6vw, 20px); font-weight: 700; }
+      .prep-steps { padding-left: 20px; font-size: clamp(14px, 1.2vw, 16px); }
+      .prep-steps li { margin-bottom: 6px; }
+
+     
+      .lab-ui { margin-top: var(--space-3); padding: var(--space-2); border: 1px dashed var(--border); border-radius: var(--radius); background:#fff; }
+      .lab-row { display:flex; flex-wrap:wrap; gap: 10px 14px; align-items:center; margin-top: 10px; }
+      .lab-row input[type="text"], .lab-row input[type="number"] { padding: 8px 10px; border:1px solid var(--border); border-radius: 8px; min-width: 220px; }
+      .lab-row button { padding: 8px 10px; border:1px solid var(--bld); background:#fff; border-radius: 8px; font-weight: 600; cursor:pointer; }
+      .lab-link { display:inline-block; margin-top: 8px; font-weight: 700; color:#000; text-decoration: underline; cursor:pointer; }
+      .lab-list { margin: 10px 0 0; padding-left: 20px; }
+      .lab-note { font-size: 14px; opacity: .9; }
+      .lab-badge { display:inline-block; padding: 2px 8px; border:1px solid var(--bld); border-radius: 999px; font-size: 12px; font-weight: 700; }
+      .lab-spacer { height: 8px; }
+
+      @media (max-width: 1280px) {
+        .layout-grid { grid-template-columns: 220px 10px 1fr; }
+      }
+      @media (max-width: 900px) {
+        .layout-grid { grid-template-columns: 200px 8px 1fr; }
+        .left-col { min-height: 520px; }
+        .right-col { min-height: 520px; }
+        .box5 { gap: var(--space-2); }
+        .slogan, .cta { padding: 6px 10px; }
+      }
+      @media (max-width: 640px) {
+        .page { padding: var(--space-3); }
+        .layout-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+        .left-col, .right-col { border: 1px solid var(--border); min-height: initial; }
+        .gutter { display: none; }
+        .right-col { grid-template-rows: auto; }
+        .box { padding: var(--space-2); }
+        .box2 { padding: var(--space-2) var(--space-3); gap: var(--space-2); }
+        .box3 { padding: var(--space-3); }
+        .box5 { padding: var(--space-3); }
+        .main-nav {
+          list-style: none;
+          padding: 0;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px 12px;
+        }
+        .main-nav li { margin: 0; }
+        .main-nav a {
+          display: block;
+          padding: 10px 12px;
+          border: 1px solid var(--bld);
+          border-radius: var(--radius);
+          background: #fff;
+          text-align: center;
+        }
+      }
+      @media (max-width: 360px) {
+        .main-nav { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <div class="layout-grid">
+        <section class="left-col">
+          <div class="box box1" id="block1">
+            <div class="text-wrapper">
+              <p>
+                Наш туристичний центр пропонує індивідуальні маршрути, які
+                поєднують комфорт і пригоди. Ми допомагаємо планувати подорож
+                так, щоб вона підходила саме вам.
+              </p>
+              <p>
+                Кожен напрям ми тестуємо заздалегідь: житло, транспорт,
+                харчування, інфраструктура. Ви отримуєте не рекламу, а чесні
+                рекомендації.
+              </p>
+            </div>
+          </div>
+          <div class="box box4" id="block4">
+            <div class="text-wrapper">
+              <p>Підтримка 24</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="gutter" aria-hidden="true"></div>
+
+        <section class="right-col">
+          <header class="box box2" id="block2">
+            <div class="box2-left">
+              <h2 class="slogan">Ocean Dream Travel</h2>
+            </div>
+            <div class="box2-right">
+              <div class="text-wrapper">
+                <p>
+                  Ми організовуємо відпочинок біля моря, екскурсії,
+                  круїзи та романтичні втечі. Ваш релакс — наша робота.
+                </p>
+              </div>
+            </div>
+          </header>
+
+          <article class="box box3" id="block3">
+            <div class="text-wrapper" id="block3Text">
+              <p>
+                Ви зараз на сторінці <strong>Page 1</strong>. Тут ми ділимося
+                загальною інформацією про сервіс та підхід до клієнта.
+              </p>
+              <p>
+                Нижче, на інших сторінках сайту, ви знайдете галерею напрямків,
+                карту популярних локацій та поетапний план подорожі.
+              </p>
+
+              <h3 class="section-title">Етапи підготовки до подорожі:</h3>
+              <ol class="prep-steps">
+                <li>Обговорюємо бюджет та побажання.</li>
+                <li>Обираємо країну, сезон і формат відпочинку.</li>
+                <li>Бронюємо перельоти та житло.</li>
+                <li>Готуємо страховку і трансфер.</li>
+                <li>Відправляємо персональний путівник.</li>
+              </ol>
+            </div>
+          </article>
+
+          <footer class="box box5" id="block5">
+            <div class="box5-left"><span class="label-num">5</span></div>
+            <div class="box5-right">
+              <h2 class="cta">Book Your Trip Now</h2>
+              <nav aria-label="Головне меню сайта">
+                <ul class="main-nav">
+                  <li><a href="page1.html">Home</a></li>
+                  <li><a href="page2.html">Destinations</a></li>
+                  <li><a href="page3.html">Map &amp; Gallery</a></li>
+                  <li><a href="page4.html">Plan &amp; Prices</a></li>
+                </ul>
+              </nav>
+            </div>
+          </footer>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      "use strict";
+
+      const $ = (sel, root = document) => root.querySelector(sel);
+
+      const blocks = {
+        1: $("#block1"),
+        2: $("#block2"),
+        3: $("#block3"),
+        4: $("#block4"),
+        5: $("#block5"),
+      };
+
+      const initialHTML = {};
+      for (let i = 1; i <= 5; i++) initialHTML[i] = blocks[i].innerHTML;
+
+      
+      function swapTexts_1_2() {
+        const tmp = blocks[1].innerHTML;
+        blocks[1].innerHTML = blocks[2].innerHTML;
+        blocks[2].innerHTML = tmp;
+      }
+
+      
+      function ovalAreaToBlock3() {
+        const a = 6; 
+        const b = 4;
+        const S = Math.PI * a * b;
+
+        const host = $("#block3Text");
+        if (!host || $("#ovalAreaResult")) return;
+
+        const p = document.createElement("p");
+        p.id = "ovalAreaResult";
+        p.innerHTML = `<span class="lab-badge">JS</span> Площа овала (a=${a}, b=${b}): <strong>${S.toFixed(2)}</strong>`;
+        host.appendChild(p);
+      }
+
+     
+      function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
+      }
+      function getCookie(name) {
+        const key = encodeURIComponent(name) + "=";
+        const parts = document.cookie.split(";").map(s => s.trim());
+        for (const p of parts) if (p.startsWith(key)) return decodeURIComponent(p.slice(key.length));
+        return null;
+      }
+      function deleteCookie(name) {
+        document.cookie = `${encodeURIComponent(name)}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+      }
+
+     
+      const COOKIE_NAME = "variant15_divisors";
+
+      function computeDivisors(n) {
+        const d = [];
+        for (let i = 1; i * i <= n; i++) {
+          if (n % i === 0) {
+            d.push(i);
+            if (i !== n / i) d.push(n / i);
+          }
+        }
+        d.sort((x, y) => x - y);
+        return d;
+      }
+
+      function setupDivisorsWithCookies() {
+        const saved = getCookie(COOKIE_NAME);
+
+       
+        if (saved) {
+          const wantDelete = confirm(
+            `Інформація з cookies:\n${saved}\n\nВидалити дані із cookies?`
+          );
+          if (wantDelete) {
+            deleteCookie(COOKIE_NAME);
+            location.reload(); 
+          } else {
+            alert("Cookies існують. Потрібно перезавантажити веб-сторінку.");
+          }
+          return; 
+        }
+
+        
+        const host = $("#block3Text");
+        if (!host) return;
+
+        const ui = document.createElement("div");
+        ui.className = "lab-ui";
+        ui.id = "divisorsUI";
+        ui.innerHTML = `
+          <div class="lab-note"><span class="lab-badge">Cookies</span> Дільники натурального числа (результат збережеться в cookies)</div>
+          <form id="divisorsForm" class="lab-row" autocomplete="off">
+            <label>Число:
+              <input id="divisorsN" type="number" min="1" step="1" required placeholder="Напр. 36" />
+            </label>
+            <button type="submit">Знайти дільники</button>
+          </form>
+        `;
+        host.appendChild(ui);
+
+        $("#divisorsForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const n = Number($("#divisorsN").value);
+          if (!Number.isInteger(n) || n < 1) {
+            alert("Введіть натуральне число (1, 2, 3, ...).");
+            return;
+          }
+          const divs = computeDivisors(n);
+          const msg = `n=${n}; дільники: ${divs.join(", ")}`;
+          alert(msg);
+          setCookie(COOKIE_NAME, msg, 7);
+          location.reload();
+        });
+      }
+
+      
+      const LS_ALIGN_1 = "variant15_align_block1";
+      const LS_ALIGN_2 = "variant15_align_block2";
+
+      function applyAlignFromLS() {
+        const a1 = localStorage.getItem(LS_ALIGN_1) === "1";
+        const a2 = localStorage.getItem(LS_ALIGN_2) === "1";
+        blocks[1].style.textAlign = a1 ? "right" : "";
+        blocks[2].style.textAlign = a2 ? "right" : "";
+      }
+
+      function setupAlignMouseover() {
+        const host = $("#block3Text");
+        if (!host) return;
+
+        const ui = document.createElement("div");
+        ui.className = "lab-ui";
+        ui.id = "alignUI";
+        ui.innerHTML = `
+          <div class="lab-note"><span class="lab-badge">mouseover</span> Вирівнювання вправо для блоків 1 і 2 (localStorage)</div>
+          <div class="lab-row">
+            <label><input type="checkbox" id="alignB1" /> Блок 1 вправо</label>
+            <label><input type="checkbox" id="alignB2" /> Блок 2 вправо</label>
+            <span class="lab-note">Наведіть курсор на сторінку (mouseover), щоб застосувати.</span>
+          </div>
+        `;
+        host.appendChild(ui);
+
+        $("#alignB1").checked = localStorage.getItem(LS_ALIGN_1) === "1";
+        $("#alignB2").checked = localStorage.getItem(LS_ALIGN_2) === "1";
+
+        document.addEventListener("mouseover", () => {
+          localStorage.setItem(LS_ALIGN_1, $("#alignB1").checked ? "1" : "0");
+          localStorage.setItem(LS_ALIGN_2, $("#alignB2").checked ? "1" : "0");
+          applyAlignFromLS();
+        }, { passive: true });
+      }
+
+     
+      function listKey(blockNo) { return `variant15_ulist_block_${blockNo}`; }
+
+      function renderSavedList(blockNo, items) {
+        const el = blocks[blockNo];
+        const wrap = document.createElement("div");
+        wrap.innerHTML = `<div class="lab-note"><span class="lab-badge">UL</span> Список (block ${blockNo})</div>`;
+
+        const ul = document.createElement("ul");
+        ul.className = "lab-list";
+        for (const it of items) {
+          const li = document.createElement("li");
+          li.textContent = String(it);
+          ul.appendChild(li);
+        }
+        wrap.appendChild(ul);
+
+        const row = document.createElement("div");
+        row.className = "lab-row";
+        const delBtn = document.createElement("button");
+        delBtn.type = "button";
+        delBtn.textContent = "Видалити дані списку (localStorage)";
+        delBtn.addEventListener("click", () => {
+          localStorage.removeItem(listKey(blockNo));
+          el.innerHTML = initialHTML[blockNo];
+          injectListLink(blockNo);
+        });
+        row.appendChild(delBtn);
+        wrap.appendChild(row);
+
+        el.innerHTML = "";
+        el.appendChild(wrap);
+      }
+
+      function showListEditor(blockNo, linkEl) {
+        const parent = blocks[blockNo];
+        const old = parent.querySelector(".lab-ui");
+        if (old) old.remove();
+
+        const ui = document.createElement("div");
+        ui.className = "lab-ui";
+        ui.innerHTML = `
+          <div class="lab-note"><span class="lab-badge">UL</span> Додайте пункти списку (необмежено)</div>
+          <div class="lab-row">
+            <input type="text" id="ulItem_${blockNo}" placeholder="Текст пункту..." />
+            <button type="button" id="ulAdd_${blockNo}">Додати</button>
+          </div>
+          <ul class="lab-list" id="ulPreview_${blockNo}"></ul>
+          <div class="lab-row">
+            <button type="button" id="ulSave_${blockNo}">Зберегти в localStorage</button>
+            <button type="button" id="ulDelete_${blockNo}">Видалити дані з localStorage</button>
+          </div>
+        `;
+        linkEl.insertAdjacentElement("afterend", ui);
+
+        const items = [];
+        const input = $(`#ulItem_${blockNo}`, ui);
+        const preview = $(`#ulPreview_${blockNo}`, ui);
+
+        const redraw = () => {
+          preview.innerHTML = "";
+          for (const t of items) {
+            const li = document.createElement("li");
+            li.textContent = t;
+            preview.appendChild(li);
+          }
+        };
+
+        $(`#ulAdd_${blockNo}`, ui).addEventListener("click", () => {
+          const val = (input.value || "").trim();
+          if (!val) return;
+          items.push(val);
+          input.value = "";
+          redraw();
+          input.focus();
+        });
+
+        input.addEventListener("keydown", (ev) => {
+          if (ev.key === "Enter") {
+            ev.preventDefault();
+            $(`#ulAdd_${blockNo}`, ui).click();
+          }
+        });
+
+        $(`#ulSave_${blockNo}`, ui).addEventListener("click", () => {
+          if (items.length === 0) {
+            alert("Додайте хоча б один пункт.");
+            return;
+          }
+          localStorage.setItem(listKey(blockNo), JSON.stringify(items));
+          renderSavedList(blockNo, items);
+        });
+
+        $(`#ulDelete_${blockNo}`, ui).addEventListener("click", () => {
+          localStorage.removeItem(listKey(blockNo));
+          alert("Дані списку видалено з localStorage.");
+          items.length = 0;
+          redraw();
+        });
+      }
+
+      function injectListLink(blockNo) {
+        const el = blocks[blockNo];
+
+        
+        const saved = localStorage.getItem(listKey(blockNo));
+        if (saved) {
+          try {
+            const arr = JSON.parse(saved);
+            if (Array.isArray(arr)) {
+              renderSavedList(blockNo, arr);
+              return;
+            }
+          } catch (_) {}
+        }
+
+        if (el.querySelector(".lab-link")) return;
+
+        const link = document.createElement("a");
+        link.href = "#";
+        link.className = "lab-link";
+        link.textContent = "Створити ненумерований список";
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          showListEditor(blockNo, link);
+        });
+
+        const target = el.querySelector(".text-wrapper") || el;
+        target.appendChild(document.createElement("div")).className = "lab-spacer";
+        target.appendChild(link);
+      }
+
+      function setupUnorderedLists() {
+        for (let i = 1; i <= 5; i++) injectListLink(i);
+      }
+
+      
+      (function () {
+        swapTexts_1_2();         
+        applyAlignFromLS();       
+        ovalAreaToBlock3();      
+        setupDivisorsWithCookies(); 
+        setupAlignMouseover();    
+        setupUnorderedLists();    
+      })();
+    </script>
+  </body>
+</html>
